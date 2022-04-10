@@ -25,7 +25,7 @@ async function printLogs(logSources, printer)
 
   logMap = new Map(
     [...logMap.entries()].sort((a, b) => {
-      return new Date(b.key) - new Date(a.key);
+      return new Date(a[0]) - new Date(b[0]);
     })
   ).forEach((value, key, map) => {
     printer.print(value);
