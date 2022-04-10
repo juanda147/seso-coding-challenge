@@ -18,7 +18,7 @@ module.exports = (logSources, printer) => {
 
   logMap = new Map(
     [...logMap.entries()].sort((a, b) => {
-      return new Date(b.key).getTime() - new Date(a.key).getTime();
+      return new Date(b.key) - new Date(a.key);
     })
   ).forEach((value, key, map) => {
     printer.print(value, map, count);
@@ -28,13 +28,3 @@ module.exports = (logSources, printer) => {
 
   return console.log("Sync sort complete.");
 };
-
-
-function sort(o) {
-  return Object.keys(o)
-    .sort((a,b) => new Date(a).getTime() - new Date(b).getTime()) 
-    .reduce((a, k) => { 
-        a[k] = o[k];
-        return a;
-      }, {});
-}
